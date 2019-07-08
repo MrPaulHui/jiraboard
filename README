@@ -1,0 +1,53 @@
+Create a webpage to show the data of team.
+Use MySQL DB to save these data from JIRA.
+
+Usage:
+1) Setup Python3 Environment on a CentOS VM or host (don't remove or replace system self's python instance - use venv)
+e.g. you might need to install below libraries depends on your Python environment
+   1  # install Python3 and pip
+      yum install epel-release
+      yum install python36
+      curl -O https://bootstrap.pypa.io/get-pip.py
+      python3 get-pip.py
+      python3 -m venv <directory>
+      source <directory>/bin/activate
+
+   2  pip install --upgrade pip
+   3  pip install requests
+   4  pip install libxl
+   5  pip install libxml
+   6  pip install bs4
+   7  pip install sqlalchemy
+   8  pip install flask_wtf
+   9  pip install flask_bootstrap
+   10  pip install flask_sqlalchemy
+   11  pip install matplotlib
+   12  pip install pymysql
+   13  pip install jira
+
+2) Setup mysql server instance on this VM with version >=5.5.x
+3) Create a blank database in mysql name with: xsnkgperf with utf-8mb4 encode
+3) Execute <python3 webpage.py> first to initial the database
+4) Execute <python3 init.py> to initialize the database
+5) Start by <python3 webpage.py>
+
+Components:
+1, crawl.py: A backend job to crawl data into a mysql database
+2, init.py: execute init.py first to initialize the database
+3, webpage.py: a webpage of hosting the web GUI for user interface (See below for more details)
+4, form.py: define the Webpage and form mapping
+5, bitbucket.py: read the code commit data, it is invoked as a sub-process by the crawl.py backend process. 
+
+Home Page:
+
+1. Query tickets.
+	You can choice a sprint from 18S02 to 18S52 or enter start date and end date to limit the date of data. And also can choice a team (emei, shaolin, wudang, nanjing) or a member or the ticket of project, eg. (CA, CP). 
+	Then when you enter the submit button, the resoult of data restrict in your enter will show in the page, include the comments and changes.
+2. Current Sprint.
+	This page show the current sprint's team data(emei, shaolin, wudang, nanjing), include two table (CA and CP), the link in the last cell every row is the link to show every ticket.
+	Below these two table is four links. This link will show the resolved or unresolved ticket of every member in the team. The ratio is the ratio about sum resolved ticket's story point and sum ticket's story point.
+	Below the table of team detail is two graph, to show the last five sprint's resolved ticket number.
+3. Coding Contribution.
+	This page show the all of code push in BitBucket, and below the table you can limit the member or date to show.
+4. Config.		
+	In this page, you can modify the sprint's start date or end date, and every team's member.

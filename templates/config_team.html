@@ -1,0 +1,87 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+    <table method="post", class="form">
+        <tr>
+            <td>
+                <h2>{{team}}'s all members: </h2>
+            </td>
+            <td width="100px"></td>
+            <td>
+                <h2>Add other member to Team: </h2>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="top">
+                <form action="team_member_delete" method="post" name="delete">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="submit" value="Delete" class="form-control" style="width: 70px;height: 30px"><br>
+                    <input type="text" name="delete_name" class="form-control" style="height: 30px; width: 150px"><br>
+                    <table>
+                        {% for member in members: %}
+                            <tr>
+                                <input type="checkbox" name="{{member.name}}">{{member.name}}<br>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </form>
+            </td>
+            <td style="width: 100px;"></td>
+            <td valign="top">
+                <form action="team_member_add" method="post" name="add">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="submit" value="Add" style="width: 70px; height: 30px;" class="form-control"><br>
+                    {% for message in get_flashed_messages() %}
+                        <div class="alert alert-warning">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <input type="text" name="add_name"  class="form-control" style="height: 30px; width: 150px"><br>
+                    <table>
+                        {% for member in u_members: %}
+                            <tr>
+                                <input type="checkbox" name="{{member.name}}">{{member.name}}<br>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+
+    <input type="submit" value="Back"  class="form-control" style="height: 30px; width: 70px" onclick="window.location.href='/config'">
+    {% endblock %}
+</div>
+{% endblock %}

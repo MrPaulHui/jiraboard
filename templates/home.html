@@ -1,0 +1,53 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+        <a href="/query_ticket"><h3>Query Tickets</h3></a>
+        <!--<input class="form-control" type="button" name="button" value="Query" style="width: 70px" onclick="window.location.href='/query_ticket'">-->
+        <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+        <!--<br><br><br>-->
+        <a href="/current_sprint"><h3>Sprints Results</h3></a>
+        <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+        <!--<input class="form-control" type="button" name="button" value="Config" style="width: 70px" onclick="window.location.href='/config'">-->
+        <!--<br><br><br>-->
+        <a href="/commits"><h3>Coding Contribution Matrix</h3></a>
+        <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+        <!--<input class="form-control" type="button" name="button" value="Current Sprint" style="width: 120px" onclick="window.location.href='/current_sprint'">-->
+        <!--<br><br><br>-->
+        <a href="/config"><h3>Config</h3></a>
+        <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+        <!--<input class="form-control" type="button" name="button" value="Bitbucket Count" style="width: 120px" onclick="window.location.href='/commits'">-->
+    {% endblock %}
+
+</div>
+
+{% endblock %}

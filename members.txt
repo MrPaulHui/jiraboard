@@ -1,0 +1,28 @@
+1,Lin Liu,1,1,0,0
+2,Min Li (XenServer),1,1,0,0
+3,Yang Qian,1,1,0,0
+4,Yarsin He,1,1,0,0
+5,Naichuan Sun,1,1,0,0
+6,Xihuan Yang,1,1,0,0
+7,Yuan Ren,1,1,0,0
+8,Fei Su,1,1,0,0
+9,Yue Hu,1,1,0,0
+10,Yili Gu,1,1,0,0
+11,Zheng Chai,1,0,1,0
+12,Liang Dai,1,0,1,0
+13,Taoyong Ding,1,0,1,0
+14,Hui Zhang,1,0,1,0
+15,Weiwei You,1,0,1,0
+16,Long Zhang,1,0,1,0
+17,Yuxiao Huang,1,0,1,0
+18,Jisheng Xing,1,0,1,0
+19,Michael Zhao,1,0,1,0
+20,Ming Lu,1,0,0,1
+21,Xin Li (Talons),1,0,0,1
+22,Kun Ma,1,0,0,1
+23,Huan Xie,1,0,0,1
+24,Wei Xie,1,0,0,1
+25,Cheng Zhang,1,0,0,1
+26,Deli Zhang,1,0,0,1
+27,Liang Zhou,1,0,0,1
+28,Qin Zhang,1,0,0,1

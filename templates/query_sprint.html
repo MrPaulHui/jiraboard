@@ -1,0 +1,108 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+        <!--{{ wtf.quick_form(form) }}-->
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <table>
+            <tr>
+                <td>
+                    <input type="radio" name="choice" value="{{ form.choice.choices[0][0] }}" checked="checked">
+                    <label style="font-size: 20px">{{ form.choice.choices[0][1] }}</label>
+                </td>
+                <td style="width: 100px;"></td>
+                <td>
+                    <select style="width: 200px; height: 30px" name="sprint">
+                        {% for i, j in form.sprint.choices %}
+                        <option  value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+                <tr style="height: 50px"></tr>
+            <tr>
+                <td>
+                    <input type="radio" name="choice" value="{{ form.choice.choices[1][0] }}">
+                    <label style="font-size: 20px">{{ form.choice.choices[1][1] }}</label>
+                </td>
+                <td style="width: 100px;"></td>
+                <td>
+                    <input name="start_date" style="width: 200px; height: 30px">
+                </td>
+                <td style="width: 100px;"></td>
+                <td>
+                    <input name="end_date" style="width: 200px; height: 30px">
+                </td>
+            </tr>
+                <tr style="height: 50px"></tr>
+            <tr>
+                <td>
+                    <label style="font-size: 20px">
+                        {{ form.team_or_member.label }}
+                    </label>
+                </td>
+                <td style="width: 100px;"></td>
+                <td colspan="2">
+                    <select name="team_or_member" style="width: 200px; height: 30px">
+                        {% for i, j in form.team_or_member.choices %}
+                            <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+               <tr style="height: 50px"></tr>
+            <tr>
+                <td>
+                    <label style="font-size: 20px"> {{ form.type.label }}</label>
+                </td>
+                <td style="width: 100px;"></td>
+                <td>
+                    <input type="text" name="type"  style="width: 200px; height: 30px">
+                </td>
+            </tr>
+               <tr style="height: 50px"></tr>
+            <tr>
+                <td>
+                    <input type="submit" name="submit" value="Submit"  style="width: 70px; height: 30px" class="form-control">
+                </td>
+            </tr>
+            </table>
+        </form>
+        <br>
+        {% for flash in get_flashed_messages() %}
+            <h4 style="color: red">{{ flash }}</h4>
+        {% endfor %}
+        <br><br>
+    <input type="button" value="Back" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='/'">
+    {% endblock %}
+</div>
+{% endblock %}

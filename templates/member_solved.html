@@ -1,0 +1,59 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+    <h2 style="text-align:center">{{member_name}} Solved ticket numbers</h2>
+    <br>
+    <table border="1" width="100%">
+        <tr>
+            <td align="center" style="background-color: paleturquoise;"><b>Sprint</b></td>
+            {% for sprint in draw_sprint %}
+            <td align="center" style="background-color: paleturquoise;"><b>{{sprint}}</b></td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td align="center"><b>Solved Num</b></td>
+            {% for i in range(count)%}
+            {% if draw_solved_num[i] == 0 %}
+            <td align="center">{{draw_solved_num[i]}}</td>
+            {% else %}
+            <td align="center"><a href="https://issues.citrite.net/issues/?jql=id in ({{show_ticket[i]}})">{{draw_solved_num[i]}}</a></td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+    <br>
+    <div style="text-align:center">
+        <img src="{{url_for('static', filename='%s.png' % member_name, _t=val1)}}">
+    </div>
+    <input type="button" value="Back" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='/current_sprint'">
+    {% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+        {% if resolved_qa %}
+            <h2>Resolved QA Ticket</h2>
+            <a href="https://issues.citrite.net/issues/?jql=id in ({{resolved_qa_link}})"><p>view in JIRA</p></a>
+            <table border="1">
+                <tr>
+                    <th>Key</th>
+                </tr>
+                {% for qa in resolved_qa %}
+                <tr>
+                    <td><a href="https://issues.citrite.net/browse/{{ qa }}">{{ qa }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        {% if resolved_dev %}
+            <h2>Resolved DEV Ticket</h2>
+            <a href="https://issues.citrite.net/issues/?jql=id in ({{resolved_dev_link}})"><p>view in JIRA</p></a>
+            <table border="1">
+                <tr>
+                    <th>Key</th>
+                </tr>
+                {% for dev in resolved_dev %}
+                <tr>
+                    <td><a href="https://issues.citrite.net/browse/{{ dev }}">{{ dev }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        {% if unresolved_qa %}
+            <h2>Unresolved QA Ticket</h2>
+            <a href="https://issues.citrite.net/issues/?jql=id in ({{unresolved_qa_link}})"><p>view in JIRA</p></a>
+            <table border="1">
+                <tr>
+                    <th>Key</th>
+                </tr>
+                {% for qa in unresolved_qa %}
+                <tr>
+                    <td><a href="https://issues.citrite.net/browse/{{ qa }}">{{ qa }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        {% if unresolved_dev %}
+            <h2>Unresolved DEV Ticket</h2>
+            <a href="https://issues.citrite.net/issues/?jql=id in ({{unresolved_dev_link}})"><p>view in JIRA</p></a>
+            <table border="1">
+                <tr>
+                    <th>Key</th>
+                </tr>
+                {% for dev in unresolved_dev %}
+                <tr>
+                    <td><a href="https://issues.citrite.net/browse/{{ dev }}">{{ dev }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <br><br><br>
+    <input type="button" value="Back" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='/current_sprint'">
+    {% endblock %}
+</div>
+{% endblock %}

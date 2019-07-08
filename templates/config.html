@@ -1,0 +1,45 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+        {{ wtf.quick_form(form) }}
+    <p><b>choose ticket types you want to query by crawl</b></p>
+    <input type="button" value="modify" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='config_ticket_type'">
+    <p><b>choose repo types you want to query by crawl</b></p>
+    <input type="button" value="modify" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='config_repo_type'">
+        <br><br><br>
+    <input type="button" value="Back" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='/'">
+    {% endblock %}
+
+</div>
+
+{% endblock %}

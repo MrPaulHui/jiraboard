@@ -1,0 +1,176 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+        <h2>Current Sprint CA</h2>
+        <table border="1" width="100%">
+            <tr>
+                <td rowspan="3"><b>Team Name</b></td>
+                <td rowspan="3"><b>Sprint</b></td>
+                <td colspan="6" align="center"><b>Resolved</b></td>
+                <td colspan="6" align="center"><b>Unresolved</b></td>
+                <td rowspan="3" align="center"><b>Link</b></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><b>CA Tickets</b></td>
+                <td colspan="2" align="center"><b>QA CA Tickets</b></td>
+                <td colspan="2" align="center"><b>DEV CA Tickets</b></td>
+                <td colspan="2" align="center"><b>CA Tickets</b></td>
+                <td colspan="2" align="center"><b>QA CA Tickets</b></td>
+                <td colspan="2" align="center"><b>DEV CA Tickets</b></td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+            </tr>
+            {% for _,team in CA.items() %}
+                <tr {% if loop.index == 4 %}
+                    style="background-color: paleturquoise"
+                    {% endif %}>
+                    <td>{{team.team_name}}</td>
+                    <td>{{team.sprint}}</td>
+                    <td align="center">{{team.resolved_num}}</td>
+                    <td align="center">{{team.resolved_point}}</td>
+                    <td align="center">{{team.resolved_qa_num}}</td>
+                    <td align="center">{{team.resolved_qa_point}}</td>
+                    <td align="center">{{team.resolved_dev_num}}</td>
+                    <td align="center">{{team.resolved_dev_point}}</td>
+                    <td align="center">{{team.unresolved_num}}</td>
+                    <td align="center">{{team.unresolved_point}}</td>
+                    <td align="center">{{team.unresolved_qa_num}}</td>
+                    <td align="center">{{team.unresolved_qa_point}}</td>
+                    <td align="center">{{team.unresolved_dev_num}}</td>
+                    <td align="center">{{team.unresolved_dev_point}}</td>
+                    <td align="center"><a href="current_sprint/team/CA/{{team.team_name}}">Ticket</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br><br>
+
+        <h2>Current Sprint CP</h2>
+        <table border="1" width="100%">
+            <tr>
+                <td rowspan="3"><b>Team Name</b></td>
+                <td rowspan="3"><b>Sprint</b></td>
+                <td colspan="6" align="center"><b>Resolved</b></td>
+                <td colspan="6" align="center"><b>Unresolved</b></td>
+                <td rowspan="3" align="center"><b>Link</b></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><b>CP Tickets</b></td>
+                <td colspan="2" align="center"><b>QA CP Tickets</b></td>
+                <td colspan="2" align="center"><b>DEV CP Tickets</b></td>
+                <td colspan="2" align="center"><b>CP Tickets</b></td>
+                <td colspan="2" align="center"><b>QA CP Tickets</b></td>
+                <td colspan="2" align="center"><b>DEV CP Tickets</b></td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+                <th>Number</th>
+                <th>Story Point</th>
+            </tr>
+            {% for _,team in CP.items() %}
+                <tr {% if loop.index == 4 %}
+                    style="background-color: paleturquoise"
+                    {% endif %}>
+                    <td>{{team.team_name}}</td>
+                    <td>{{team.sprint}}</td>
+                    <td align="center">{{team.resolved_num}}</td>
+                    <td align="center">{{team.resolved_point}}</td>
+                    <td align="center">{{team.resolved_qa_num}}</td>
+                    <td align="center">{{team.resolved_qa_point}}</td>
+                    <td align="center">{{team.resolved_dev_num}}</td>
+                    <td align="center">{{team.resolved_dev_point}}</td>
+                    <td align="center">{{team.unresolved_num}}</td>
+                    <td align="center">{{team.unresolved_point}}</td>
+                    <td align="center">{{team.unresolved_qa_num}}</td>
+                    <td align="center">{{team.unresolved_qa_point}}</td>
+                    <td align="center">{{team.unresolved_dev_num}}</td>
+                    <td align="center">{{team.unresolved_dev_point}}</td>
+                    <td align="center"><a href="current_sprint/team/CP/{{team.team_name}}">Ticket</a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+        <br><br><br>
+        <h2>Historical Details</h2>
+        <br>
+    <a href="current_sprint/detail/emei"><h4>Emei Team</h4></a>
+    <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+    <a href="current_sprint/detail/shaolin"><h4>Shaolin Team</h4></a>
+    <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+    <a href="current_sprint/detail/wudang"><h4>Wudang Team</h4></a>
+    <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+    <a href="current_sprint/detail/nanjing"><h4>Nanjing Team</h4></a>
+    <hr style="size: 20px; width: 80%; border-color: black;" align="left">
+
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <table>
+            <tr>
+                <td><h4>{{ form.member_name.label }}</h4></td>
+                <td style="width: 100px;"></td>
+                <td>
+                    <select name="member_name">
+                    {% for names in form.member_name.choices %}
+                        <option value="{{names}}"> {{names}} </option>
+                    {% endfor %}
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" name="submit" value="Submit"  style="width: 70px; height: 30px" class="form-control">
+    </form>
+    <br><br>
+    <input type="button" value="Back" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='/'">
+    {% endblock %}
+</div>
+{% endblock %}

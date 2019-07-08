@@ -1,0 +1,98 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}XS Nanjing Matrix{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-taget=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <sapn class="icon-bar"></sapn>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XS Nanjing Matrix</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand" href="http://xs-dashboards.eng.citrite.net/dashboard/file/xs-nanjing.json">XS Nanjing Dashboard</a>
+        </div>
+        <div class="navbar=collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+        <form>
+            <table>
+                <tr>
+                    <td><h2>Comments_Fig</h2></td>
+                    <td><h2>Changes_Fig</h2></td>
+                </tr>
+                <tr>
+                    <td><img src="static/comment_lines.png" style="width: auto; height: auto;"></td>
+                    <td><img src="static/change_lines.png" style="width: auto; height: auto;"></td>
+                </tr>
+            </table>
+            <h2>Comments:</h2>
+            <table border="1">
+                <tr>
+                    <th style="width: 10%">Ticket ID</th>
+                    <th style="width: 15%">Author</th>
+                    <th style="width: 20%">DateTime</th>
+                    <th style="width: 60%">Comment</th>
+                </tr>
+                {% for cmt in cmts %}
+                    <tr {% if loop.index % 2 %}
+                        style="background-color: paleturquoise;"
+                        {% endif %}>
+                        <td>
+                            <a href="https://issues.citrite.net/browse/{{cmt.ticket_id }}"> {{ cmt.ticket_id }}</a>
+                        </td>
+                        <td>{{ cmt.author }}</td>
+                        <td>{{ cmt.date }}</td>
+                        {% if cmt.content|length > 80 %}
+                            <td> {{ cmt.content[:80] + '...' }}</td>
+                        {% else %}
+                            <td>{{ cmt.content }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+            <h2>Changes:</h2>
+            <table border="1">
+                <tr>
+                    <th style="width: 10%">Ticket ID</th>
+                    <th style="width: 15%">Author</th>
+                    <th style="width: 20%">DateTime</th>
+                    <th style="width: 60%">Change</th>
+                </tr>
+                {% for change in changes %}
+                    <tr {% if loop.index % 2 %}
+                        style="background-color: paleturquoise;"
+                        {% endif %}>
+                        <td>
+                            <a href="https://issues.citrite.net/browse/{{change.ticket_id }}"> {{ change.ticket_id }}</a>
+                        </td>
+                        <td>{{ change.author }}</td>
+                        <td>{{ change.date }}</td>
+                        {% if change.change|length > 80 %}
+                            <td> {{ change.change[:80] + '...' }}</td>
+                        {% else %}
+                            <td>{{ change.change }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+        <br><br><br>
+    <input type="button" value="Back" class="form-control" style="width: 70px; height: 30px" onclick="window.location.href='/query_ticket'">
+    {% endblock %}
+</div>
+{% endblock %}
